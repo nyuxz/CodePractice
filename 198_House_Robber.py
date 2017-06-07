@@ -32,6 +32,10 @@ class Solution(object):
         return total_money_i
 
     def rob_2(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
         
         last, now = 0, 0
         
@@ -41,9 +45,39 @@ class Solution(object):
         return now
 
 
+    def rob_3(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+
+        @logit: still using DP
+        1. divide the house to even ids and odd ids
+        2. find the max total money respectivelly
+        """
+        if len(nums) == 0:
+            return 0
+        
+        total_even = 0
+        total_odd = 0
+
+        for i in range(0, len(nums)):
+
+            if i % 2 == 0:
+                total_even = max(total_even + nums[i], total_even)
+                total_even = max(total_even, total_odd)
+            
+            elif i % 2 == 1:
+                total_odd = max(total_odd + nums[i], total_odd)
+                total_odd = max(total_odd, total_even)
+
+        return max(total_odd, total_even)
+
+
+
 if __name__ == '__main__':
     print (Solution().rob([8,4,8,5,9,6,5,4,4,10]))
     print (Solution().rob_2([8,4,8,5,9,6,5,4,4,10]))
+    print (Solution().rob_3([8,4,8,5,9,6,5,4,4,10]))
 
 
 
