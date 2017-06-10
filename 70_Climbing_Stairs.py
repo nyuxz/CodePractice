@@ -26,3 +26,6 @@ class Solution(object):
         for x in range(2, n+1):
             a, b = b, a + b
         return b
+
+print(Solution().climbStairs(10))
+print(Solution().climbStairs_2(10))
