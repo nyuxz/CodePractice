@@ -18,3 +18,6 @@ class Solution(object):
             count += dp[i]
         
         return count
+
+
+print (Solution().numberOfArithmeticSlices([1,2,3,4,5,6]))
