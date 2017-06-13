@@ -26,5 +26,25 @@ class Solution(object):
                 diff += 1
                 
         return diff
+
+    def hammingDistance2(self, x, y):
+        '''
+        @logit: ToDo
+        '''
+
+        return bin(x^y).count('1')
         
 print (Solution().hammingDistance(12345, 67890))
+print (Solution().hammingDistance2(12345, 67890))
+
+
+'''
+Note: To Do
+Operaters: >>, &
+'''
+
+
+
+
+
+
