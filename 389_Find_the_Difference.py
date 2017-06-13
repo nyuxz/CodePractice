@@ -24,6 +24,5 @@ class Solution(object):
 
     	return diff[0]
 
-
-print(Solution().findTheDifference("abcd", "abcde"))
+print(Solution().findTheDifference("abcd", "abecd"))
 print(Solution().findTheDifference2("abcd", "abcde"))
