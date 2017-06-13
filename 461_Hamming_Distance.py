@@ -29,7 +29,8 @@ class Solution(object):
 
     def hammingDistance2(self, x, y):
         '''
-        @logit: ToDo
+        @logit
+        ToDo: bitwise exclusive OR operator
         '''
 
         return bin(x^y).count('1')
@@ -39,7 +40,7 @@ print (Solution().hammingDistance2(12345, 67890))
 
 
 '''
-Note: To Do
+Note: Bitwise operation
 Operaters: >>, &
 '''
 
