@@ -12,8 +12,13 @@ class Solution(object):
 
     def reverseString_2(self, s):
 
-    	r = list(s) # parsing a string
-        r.reverse() # reverse
-        result = ''.join(r) # combine a list items to a string
+    	r = list(s)
+    	r.reverse()
+    	result = ''.join(r)
+    	return result
+        
 
-        return result
+
+
+print (Solution().reverseString('abcdefg'))
+print (Solution().reverseString_2('abcdefg'))
