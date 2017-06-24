@@ -5,6 +5,9 @@ class Solution(object):
         """
         :type x: int
         :rtype: int
+        @note:
+        1. this function could be correct but will not pass the test case in Leetcode, 
+            coz without handle overflow issue.
         """
         if x < 0 :
             x = -x
@@ -19,4 +22,30 @@ class Solution(object):
         
         return r
 
-print ((Solution()).reverse(-1234567))
+
+    def reverse_2(self, x):
+        """
+        :type x: int
+        :rtype: int
+        @note: handle overflow
+        """
+        if x < 0:
+            return -self.reverse(-x)
+
+        result = 0
+        while x:
+            result = result * 10 + x % 10
+            x /= 10
+        return result if result <= 0x7fffffff else 0  # Handle overflow
+
+
+if __name__ == "__main__":
+
+    # reverse of 1000000003 overflows
+    print((Solution()).reverse(1000000003))
+    print((Solution()).reverse_2(1000000003))
+
+
+'''
+ToDo: what is overflows
+'''
