@@ -18,7 +18,12 @@ class Solution(object):
     	return result
         
 
+    def reverseString_3(self, s):
 
+    	result = ''.join(reversed(s))
+
+    	return result
 
 print (Solution().reverseString('abcdefg'))
 print (Solution().reverseString_2('abcdefg'))
+print (Solution().reverseString_3('abcdefg'))
