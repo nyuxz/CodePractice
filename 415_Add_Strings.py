@@ -18,6 +18,8 @@ also we can reverse the string following,
 52191
 '''
 
+from itertools import zip_longest
+
 class Solution(object):
     def addStrings(self, num1, num2):
         """
@@ -59,12 +61,14 @@ class Solution(object):
 
     def addStrings_2(self, num1, num2):
     	'''
-    	@logit: using itertools.izip_longest
+    	@logit: using itertools.zip_longest
     	1. izip_longest: combine items to tuple generator
     	2. still need reverse order of items list
     	'''
     	carry = 0 
-    	for (x, y) in izip_longest(num1[::-1], num2[::-1], fillvalue='0'):
+    	result = '' # define result as a empty string
+
+    	for (x, y) in zip_longest(num1[::-1], num2[::-1], fillvalue='0'):
     		tmp = (int(x) + int(y) + carry)
     		reminder = tmp % 10
     		carry = tmp // 10
@@ -73,16 +77,10 @@ class Solution(object):
     		# if result = result + str(reminder), will need reverse string again
     		result = str(reminder) + result
 
-    		if carry:
-            	result = str(carry) + result
+    	if carry:
+            result = str(carry) + result
 
     	return result
-
-
-
-
-
-
 
             
 if __name__ == '__main__':
@@ -99,7 +97,7 @@ ord('52') = 52
 ord('4') - ord('0') = 4
 
 P.s.s
-itertools.izip_longest('ABCD', 'xy', fillvalue='-') --> Ax By C- D-
+itertools.zip_longest('ABCD', 'xy', fillvalue='-') --> Ax By C- D-
 
 '''
 
