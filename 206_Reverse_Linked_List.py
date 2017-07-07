@@ -1,92 +1,116 @@
 # 206. Reverse Linked List
 
+'''
+Input : Head of following linked list  
+       1->2->3->4->NULL
+Output : Linked list should be changed to,
+       4->3->2->1->NULL
+
+Input : Head of following linked list  
+       1->2->3->4->5->NULL
+Output : Linked list should be changed to,
+       5->4->3->2->1->NULL
+
+Input : NULL
+Output : NULL
+
+Input  : 1->NULL
+Output : 1->NULL
+
+'''
+
+# Definition for singly-linked list.
+class ListNode(object):
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+class Solution(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        first = head
+        rest = None
+    
+        while (first is not None):
+            next = first.next
+            first.next = rest
+            rest = first
+            first = next
+
+        return rest
+ 
+    def recurse(self, head, rest):
+      if head is None:
+        return rest
+      next = head.next
+      head.next = rest
+      return recurse(next, head)
 
 
+
+class ListNode(object):
+    def __init__(self, val, next = None):
+        self.val = val
+        self.next = next
+        
+def print_llist(n):
+  next = n.next
+  print (n.val)
+  if(next is not None):
+    print_llist(next)
+    
+# Create a linked list
+n0 = ListNode(4,None)
+n1 = ListNode(3,n0)
+n2 = ListNode(2,n1)
+n3 = ListNode(1,n2)
+
+print('the initial linked list:')
+print_llist(n3)
+
+
+
+class Solution(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        first = head
+        rest = None
+    
+        while (first is not None):
+            next = first.next
+            first.next = rest
+            rest = first
+            first = next
+
+        return rest
+ 
+    def recurse(self, head, rest):
+      if head is None:
+        return rest
+      next = head.next
+      head.next = rest
+      return recurse(next, head)
+    
+
+    def reverseList(self, head, last = None):
+      if not head:
+        return last
+      next = head.next
+      head.next = last
+      return self.reverseList(next, head)
+    
+
+result = Solution().reverseList(n3)
+print_llist(result)
 
 
 '''
-P.s. Linked List
-
-# A simple Python program to introduce a linked list
-# reference: http://www.geeksforgeeks.org/linked-list-set-1-introduction/
-
-# Node class
-class Node:
-
-	# Function to initialise the node object
-	def __init__(self, data):
-		self.data = data # Assign data
-		self.next = None # Initialize next as null
-
-
-# Linked List class contains a Node object
-class LinkedList:
-
-	# Function to initialize head
-	def __init__(self):
-		self.head = None
-
-	# This function prints contents of linked list
-	# starting from head
-	def printList(self):
-		temp = self.head
-		while (temp):
-			print temp.data,
-			temp = temp.next
-
-
-# Code execution starts here
-if __name__=='__main__':
-
-	# Start with the empty list
-	llist = LinkedList()
-
-	llist.head = Node(1)
-	second = Node(2)
-	third = Node(3)
-
-	llist.head.next = second; # Link first node with second
-	second.next = third; # Link second node with the third node
-
-	llist.printList()
-
-#-----------------------------------------------------------------------------
-	Three nodes have been created.
-	We have references to these three blocks as first,
-	second and third
-
-	llist.head	 second			 third
-		|			 |				 |
-		|			 |				 |
-	+----+------+	 +----+------+	 +----+------+
-	| 1 | None |	 | 2 | None |	 | 3 | None |
-	+----+------+	 +----+------+	 +----+------+
-
-
-	llist.head.next = second; # Link first node with second 
-
-
-	Now next of first Node refers to second. So they
-	both are linked.
-
-	llist.head	 second			 third
-		|			 |				 |
-		|			 |				 |
-	+----+------+	 +----+------+	 +----+------+
-	| 1 | o-------->| 2 | null |	 | 3 | null |
-	+----+------+	 +----+------+	 +----+------+ 
-
-	second.next = third; # Link second node with the third node
-
-
-	Now next of second Node refers to third. So all three
-	nodes are linked.
-
-	llist.head	 second			 third
-		|			 |				 |
-		|			 |				 |
-	+----+------+	 +----+------+	 +----+------+
-	| 1 | o-------->| 2 | o-------->| 3 | null |
-	+----+------+	 +----+------+	 +----+------+ 
-
+Reference: 
+http://www.geeksforgeeks.org/write-a-function-to-reverse-the-nodes-of-a-linked-list/
 '''
