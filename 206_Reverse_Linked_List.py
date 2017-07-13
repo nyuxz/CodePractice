@@ -45,14 +45,31 @@ class Solution(object):
             first = next
 
         return rest
- 
-    def recurse(self, head, rest):
-      if head is None:
-        return rest
-      next = head.next
-      head.next = rest
-      return recurse(next, head)
 
+
+    def reverseList_2(self, head):
+        tmp = ListNode(float("-inf"))
+        while head:
+            tmp.next, head.next, head = head, tmp.next, head.next
+        return tmp.next
+
+
+    def reverseList_3(self, head):
+        [begin, end] = self.reverseListRecu(head)
+        return begin
+    def reverseListRecu(self, head):
+        if not head:
+            return [None, None]
+            
+        [begin, end] = self.reverseListRecu(head.next)
+        
+        if end:
+            end.next = head
+            head.next = None
+            return [begin, head]
+        else:
+            return [head, head]
+ 
 
 if __name__ == "__main__":
     head = ListNode(1)
@@ -63,10 +80,16 @@ if __name__ == "__main__":
 
     print ('initial:', head)
     print ('reversed:',Solution().reverseList(head))
+    print ('reversed:',Solution().reverseList_2(head))
+    print ('reversed:',Solution().reverseList_3(head))
 
 
 
 '''
+ToDo:
+reverseList_2 and reverseList_3 have a different print solution with reverseList_1,
+figure it why ?
+
 Reference: 
 http://www.geeksforgeeks.org/write-a-function-to-reverse-the-nodes-of-a-linked-list/
 '''
