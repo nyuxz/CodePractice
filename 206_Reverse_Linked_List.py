@@ -16,7 +16,6 @@ Output : NULL
 
 Input  : 1->NULL
 Output : 1->NULL
-
 '''
 
 # Definition for singly-linked list.
@@ -25,52 +24,9 @@ class ListNode(object):
         self.val = x
         self.next = None
 
-class Solution(object):
-    def reverseList(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
-        first = head
-        rest = None
-    
-        while (first is not None):
-            next = first.next
-            first.next = rest
-            rest = first
-            first = next
-
-        return rest
- 
-    def recurse(self, head, rest):
-      if head is None:
-        return rest
-      next = head.next
-      head.next = rest
-      return recurse(next, head)
-
-
-
-class ListNode(object):
-    def __init__(self, val, next = None):
-        self.val = val
-        self.next = next
-        
-def print_llist(n):
-  next = n.next
-  print (n.val)
-  if(next is not None):
-    print_llist(next)
-    
-# Create a linked list
-n0 = ListNode(4,None)
-n1 = ListNode(3,n0)
-n2 = ListNode(2,n1)
-n3 = ListNode(1,n2)
-
-print('the initial linked list:')
-print_llist(n3)
-
+    def __repr__(self):
+        if self:
+            return "{} -> {}".format(self.val, repr(self.next))
 
 
 class Solution(object):
@@ -96,18 +52,18 @@ class Solution(object):
       next = head.next
       head.next = rest
       return recurse(next, head)
-    
 
-    def reverseList(self, head, last = None):
-      if not head:
-        return last
-      next = head.next
-      head.next = last
-      return self.reverseList(next, head)
-    
 
-result = Solution().reverseList(n3)
-print_llist(result)
+if __name__ == "__main__":
+    head = ListNode(1)
+    head.next = ListNode(2)
+    head.next.next = ListNode(3)
+    head.next.next.next = ListNode(4)
+    head.next.next.next.next = ListNode(5)
+
+    print ('initial:', head)
+    print ('reversed:',Solution().reverseList(head))
+
 
 
 '''
