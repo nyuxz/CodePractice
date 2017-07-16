@@ -25,4 +25,21 @@ class Solution(object):
             head = head.next #linked list point to next element
         return False
 
+    def hasCycle_2(self, head):
+        '''
+        @logit:
+            1. using two pointers, one move fast and the other slow move.
+            2. if their a cycle, two pointer will meet eventually. 
+        '''
+        fastPointer = slowPointer = head
+        while fastPointer and fastPointer.next: # if there is no cycle, fast pointer will reach None first
+        	fastPointer = fastPointer.next.next
+        	slowPointer = 	slowPointer.next
+
+        	if fastPointer == slowPointer:
+        		return True
+
+        return False
+
+
 
