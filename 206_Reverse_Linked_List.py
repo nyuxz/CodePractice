@@ -28,7 +28,6 @@ class ListNode(object):
         if self:
             return "{} -> {}".format(self.val, repr(self.next))
 
-
 class Solution(object):
     def reverseList(self, head):
         """
@@ -46,6 +45,23 @@ class Solution(object):
 
         return rest
 
+if __name__ == "__main__":
+    head = ListNode(1)
+    head.next = ListNode(2)
+    head.next.next = ListNode(3)
+    head.next.next.next = ListNode(4)
+    head.next.next.next.next = ListNode(5)
+
+    print ('initial:', head)
+    print ('reversed:',Solution().reverseList(head))
+
+
+'''
+Reference: 
+http://www.geeksforgeeks.org/write-a-function-to-reverse-the-nodes-of-a-linked-list/
+'''
+
+class Solution_2(object):
 
     def reverseList_2(self, head):
         tmp = ListNode(float("-inf"))
@@ -69,27 +85,36 @@ class Solution(object):
             return [begin, head]
         else:
             return [head, head]
- 
-
-if __name__ == "__main__":
-    head = ListNode(1)
-    head.next = ListNode(2)
-    head.next.next = ListNode(3)
-    head.next.next.next = ListNode(4)
-    head.next.next.next.next = ListNode(5)
-
-    print ('initial:', head)
-    print ('reversed:',Solution().reverseList(head))
-    print ('reversed:',Solution().reverseList_2(head))
-    print ('reversed:',Solution().reverseList_3(head))
 
 
+    def reverseList_4(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        @logit:
+            1. using a stack, push llist to stack and then pop up to print
+        """
 
-'''
-ToDo:
-reverseList_2 and reverseList_3 have a different print solution with reverseList_1,
-figure it why ?
+        # push to a stack
+        p = head
+        newList = []
+        while p:
+            newList.insert(0, p.val)
+            p = p.next
 
-Reference: 
-http://www.geeksforgeeks.org/write-a-function-to-reverse-the-nodes-of-a-linked-list/
-'''
+        # pop up from stack
+        p = head
+        for v in newList:
+            p.val = v
+            p = p.next #this kind of like: let p and p.next linked together, and move to p.next
+        return head
+
+
+
+
+
+
+
+
+
+
