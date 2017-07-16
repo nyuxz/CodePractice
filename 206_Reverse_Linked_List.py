@@ -64,27 +64,36 @@ http://www.geeksforgeeks.org/write-a-function-to-reverse-the-nodes-of-a-linked-l
 class Solution_2(object):
 
     def reverseList_2(self, head):
-        tmp = ListNode(float("-inf"))
-        while head:
-            tmp.next, head.next, head = head, tmp.next, head.next
-        return tmp.next
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        new_head = None
+        while head: #while head exist and not None 
+            p = head
+            head = head.next
+            p.next = new_head #let p.next and new_head linked together, and move to new_head
+            new_head = p #no link new_head and p, just move from new_head to p
+        return new_head
 
 
     def reverseList_3(self, head):
-        [begin, end] = self.reverseListRecu(head)
-        return begin
-    def reverseListRecu(self, head):
-        if not head:
-            return [None, None]
-            
-        [begin, end] = self.reverseListRecu(head.next)
-        
-        if end:
-            end.next = head
-            head.next = None
-            return [begin, head]
-        else:
-            return [head, head]
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        @logit: Recursion
+        """
+        if not head or not head.next:
+            return head
+
+        p = head.next
+        n = self.reverseList(p)
+
+        # thinking linked list only have two elements.
+        # [head -> None] will reverse to [None -> head]
+        head.next = None
+        p.next = head
+        return n
 
 
     def reverseList_4(self, head):
@@ -106,7 +115,7 @@ class Solution_2(object):
         p = head
         for v in newList:
             p.val = v
-            p = p.next #this kind of like: let p and p.next linked together, and move to p.next
+            p = p.next 
         return head
 
 
