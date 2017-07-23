@@ -12,7 +12,7 @@ class Solution(object):
         """
         :type root: TreeNode
         :rtype: bool
-        @logit: 
+        @logic: 
         	1. traditional way
         	2. inefficient, coz need to calculate the depth of some sub-nodes multiple times.
         """
@@ -39,7 +39,7 @@ class Solution_2(object):
         """
         :type root: TreeNode
         :rtype: bool
-        @logit: 
+        @logic: 
         	1. much efficient than the solution 1,
         	coz for each node, we only calculate the depth once, no repeat extra calculations.
         	2. define the function to get the depth of all nodes in one times, and save the depth into .val
@@ -71,7 +71,7 @@ class Solution_3(object):
         """
         :type root: TreeNode
         :rtype: bool
-        @logit: 
+        @logic: 
         	1. DFS traversal the tree, and just record if the tree is balance or not, save the space without record depth
             2. using -1 to indicate the tree is unbalance
   
