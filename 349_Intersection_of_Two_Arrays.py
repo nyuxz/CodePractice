@@ -17,6 +17,7 @@ class Solution_2(object):
         :type nums1: List[int]
         :type nums2: List[int]
         :rtype: List[int]
+        @logic: 暴力
         """
         intersection = []
         
@@ -26,34 +27,6 @@ class Solution_2(object):
                 
         return intersection
 
-
-class Solution(object):
-    def intersection(self, nums1, nums2):
-        """
-        :type nums1: List[int]
-        :type nums2: List[int]
-        :rtype: List[int]
-        @logic: 暴力
-        """
-        itec_list = []
-        map_dict = {}
-
-        for i in nums1:
-        	if i in map_dict:
-        		map_dict[i] += 1
-        	else:
-        		map_dict[i] = 1
-
-        for j in nums2:
-        	if j in map_dict:
-        		map_dict[j] += 1
-        	else:
-        		map_dict[i] = 1
-
-        for k in map_dict and map_dict[k] > 1:
-        	itec_list.append(k)
-
-        return itec_list
 
 class Solution_3(object):
     def intersection(self, nums1, nums2):
