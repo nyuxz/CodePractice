@@ -34,8 +34,12 @@ class Solution_2(object):
         :type nums2: List[int]
         :rtype: List[int]
         @logic: Counter
+        @note:
         	1. list(collections.Counter(tmp)) will return list elements
 			2. collections.Counter(tmp) will return <itertools.chain at 0x10f2a1f28>
+			3. count_list: list(Counter([tmp_list]).values())
+			   key_list: list(Counter([tmp_list]).elements())
+
         """
         return list((collections.Counter(nums1) & collections.Counter(nums2)).elements())
 
