@@ -41,7 +41,7 @@ class Solution_2(object):
                 return i
 
 
-class Solution_2(object):
+class Solution_3(object):
     def majorityElement(self, nums):
         """
         :type nums: List[int]
@@ -72,6 +72,64 @@ class Solution_4(object):
             if nums.count(r) > len(nums)/2:
                 return r
 
+class Solution_5(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        @logic: Divide and Conquer
+            1. divide nums list to half and half and find majority from each half.
+            2. if the majority of two half are same, this majority number will be the result.
+            3. O(nlogn) where T(n) = T(n/2) + 2n
+        """
+        
+        return self.majority(nums, 0, len(nums) - 1)
+    
+    def majority(self, nums, left_index, right_index):
+        
+        # for the case there is only one numbers in the list
+        if left_index == right_index:
+            return nums[left_index]
+        
+        mid_index = (left_index + right_index) / 2
+        
+        majority_left = self.majority(nums, left_index, mid_index)
+        majority_right = self.majority(nums, mid_index+1, right_index)
+        
+        if majority_left == majority_right:
+            return majority_left
+        
+        elif nums[left_index: right_index+1].count(majority_left) > nums[left_index: right_index+1].count(majority_right):
+            return majority_left
+
+        else:
+            return majority_right
+
+
+class Solution_6(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        @logic: Moore Voting Algorithm
+            1. find a pair of different numbers and delete them it from nums list
+            2. untill there is only same number left, this number will be the majority
+            3. use count variable to record total count of marjority, and count number will offset with non-marjority numebrs. [nice]
+        """
+        major = count = 0
+        for i in nums:
+            if count == 0:
+                major = i
+                count = 1
+            else:
+                count += 1 if major == i else -1
+        return major
+
+
+
+'''
+ToDo: solution_7: Bit Manipulation 
+'''
 
 if __name__ == '__main__':
 	print (Solution().majorityElement([4,4,4,4,5,5,5,5,5]))
