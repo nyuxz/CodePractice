@@ -51,4 +51,35 @@ class Solution_2(object):
         else:
             return root
 
-
+class Solution_3(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode  
+        @logic:
+            1. find path from root->p and root->q
+            2. find LCA from two path
+            3. No need BFS or DFS
+        """
+        
+        path_p = self.findPath(root, p)
+        path_q = self.findPath(root, q)
+        
+        result = root
+        for i in range(1, min(len(path_p), len(path_q))):
+            if path_p[i] == path_q[i]:
+                result = path_p[i]
+        return result
+    
+    def findPath(self, root, node):
+        path = []
+        while root.val != node.val:
+            path.append(root)
+            if node.val > root.val:
+                root = root.right
+            elif node.val < root.val:
+                root = root.left
+        path.append(node)
+        return path
