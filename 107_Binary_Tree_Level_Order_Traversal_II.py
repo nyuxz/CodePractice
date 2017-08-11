@@ -43,3 +43,22 @@ class Solution_2(object):
                 stack.append((node.right, depth+1))
                 stack.append((node.left, depth+1))
         return res
+
+
+class Solution_3(object):
+    def levelOrderBottom(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[List[int]]
+        """
+        res = []
+        self.dfs(root, 0, res)
+        return res
+
+    def dfs(self, root, depth, res):
+        if root:
+            if depth >= len(res):
+                res.insert(0, [])
+            res[-(depth+1)].append(root.val)
+            self.dfs(root.left, depth+1, res)
+            self.dfs(root.right, depth+1, res)
