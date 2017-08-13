@@ -57,7 +57,6 @@ class Solution_2(object):
                 stack.append((node.left, depth+1))
         return res
 
-
 class Solution_3(object):
     def levelOrderBottom(self, root):
         """
