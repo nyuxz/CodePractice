@@ -40,7 +40,34 @@ class Solution_2(object):
 
         return len(set(pattern)) == len(set(words)) == len(set(zip(pattern, words)))
 
+
+class Solution_3(object):
+    def wordPattern(self, pattern, str):
+        """
+        :type pattern: str
+        :type str: str
+        :rtype: bool
+        """
+        wordsList = str.split(' ')
+        if len(wordsList) != len(pattern):
+            return False
+        
+        hashmap = {}
+        
+        for i in range(len(wordsList)):
+            if pattern[i] not in hashmap:
+                if wordsList[i] not in list(hashmap.values()):
+                    hashmap[pattern[i]] = wordsList[i]
+                else:
+                    return False     
+            elif hashmap[pattern[i]] != wordsList[i]:
+                return False
+        
+        return True
+
+
 if __name__ == '__main__':
+	print (Solution().wordPattern("abba","dog cat cat dog"))
 	print (Solution_2().wordPattern("abba","dog cat cat dog"))
 
 
@@ -48,4 +75,3 @@ if __name__ == '__main__':
 
 
 
-	
