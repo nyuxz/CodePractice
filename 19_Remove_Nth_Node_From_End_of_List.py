@@ -40,3 +40,47 @@ class Solution(object):
         # coz new_head linked with slower pointer, where new_head.next refer to slower llist
         return new_head.next
 
+
+class Solution_2(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        @logic: using index
+        	1. change node value
+        """
+        def getIndex(node):
+            if not node:
+                return 0
+            index = getIndex(node.next) + 1
+            if index > n:
+                node.next.val = node.val
+            return index
+        getIndex(head)
+        return head.next
+
+class Solution_3(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        @logic: index
+        	1. not change node value
+        """
+        def remove(node):
+            if not node:
+                return 0, node
+            index, node.next = remove(node.next)
+            next_node = node if n != index+1 else node.next
+            return index+1, next_node
+        ind, new_head = remove(head)
+        return new_head
+
+
+'''
+P.s.
+It looks that linked list in python is associate with index
+solutuon_2 and solution_3 need more understanding
+'''
