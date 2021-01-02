@@ -3,11 +3,11 @@
 class Solution(object):
     def reverse(self, x):
         """
-        :type x: int
-        :rtype: int
-        @note:
-        1. this function could be correct but will not pass the test case in Leetcode, 
-            coz without handle overflow issue.
+        '''
+        1. range of the 32bit integer
+        2. after reverse the integer start with 0
+        3. negative integers
+        '''
         """
         if x < 0 :
             x = -x

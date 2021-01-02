@@ -23,30 +23,15 @@ class Solution(object):
         """
 
         if not strs:
-            return ''
-
+            return ""
+        
         for i, chars in enumerate(zip(*strs)):
+            
+            if i == 0 and len(set(chars)) > 1:
+                return ""
+                
             if len(set(chars)) > 1:
                 return strs[0][:i]
+        
+        # If only one string in strs list
         return min(strs)
-
-
-class Solution_2(object):
-    def longestCommonPrefix(self, strs):
-        """
-        :type strs: List[str]
-        :rtype: str
-        """
-        if not strs:
-            return ''
-        
-        prefix = ''
-        
-        for i in range(len(strs[0])):
-            for j in range(1, len(strs)):
-                if i >= len(strs[j]) or strs[j][i] != strs[0][i]:
-                    return prefix
-            prefix += strs[0][i]
-        return prefix
-
-        
