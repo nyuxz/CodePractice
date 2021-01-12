@@ -73,8 +73,7 @@ class Solution(object):
     		reminder = tmp % 10
     		carry = tmp // 10
 
-    		# reverse back happends here
-    		# if result = result + str(reminder), will need reverse string again
+            # add order is important
     		result = str(reminder) + result
 
     	if carry:
@@ -93,7 +92,7 @@ P.s. ord built-in function
 ord('string'): convert a string to ASCII(American Standard Code for Information Interchange) value
 e.g. convert string '0' to interger 48
 ord('0') = 48 
-ord('52') = 52
+ord('4') = 52
 ord('4') - ord('0') = 4
 
 P.s.s

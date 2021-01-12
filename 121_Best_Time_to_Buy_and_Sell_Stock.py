@@ -23,15 +23,19 @@ class Solution(object):
 class Solution_2(object):
     def maxProfit(self, prices):
         """
-        :type prices: List[int]
-        :rtype: int
         @logic: DP
         """
-        if len(prices) == 0:
+        if len(prices) == 0: 
             return 0
-        min_Price = prices[0]
-        dp = [0] * len(prices)
+        
+        min_price = prices[0]
+        max_profit = [0] * len(prices)
+        
         for i in range(0, len(prices)):
-            dp[i] = max(dp[i-1], prices[i] - min_Price)
-            min_Price = min(min_Price, prices[i])
-        return dp[-1]
+            
+            min_price = min(prices[i], min_price)
+            max_profit[i] = max(max_profit[i-1], prices[i]-min_price)
+            
+            
+        return max_profit[-1]
+

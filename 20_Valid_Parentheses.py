@@ -3,23 +3,19 @@
 
 class Solution(object):
     def isValid(self, s):
-        """
-        :type s: str
-        :rtype: bool
-        """
-        
-        parentheses_map = {')': '(', '}': '{', ']': '['}
-        
-        paren_stack = [None] #initialize stack as None, otherwise if empty will raise error: cannot pop up
-        
-        for i in s:
-            
-            # check if i is the key of parentheses_map such as ),},]
-            if i in parentheses_map:
-                if parentheses_map[i] != paren_stack.pop():
+        opening = "{[("
+        closing = "}])"
+        brackets = {')': '(', '}': '{', ']': '['}
+        stack = []
+
+        for char in s:
+            if char in opening:
+                stack.append(char)
+            elif char in closing:
+                if len(stack) == 0:
                     return False
-            else:
-                # [,{,( will be at the end of hte stack
-                paren_stack.append(i)
-                
-        return len(paren_stack) == 1
+                if stack[-1] == brackets[char]:
+                    stack.pop()
+                else:
+                    return False
+        return len(stack) == 0

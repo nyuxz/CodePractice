@@ -19,11 +19,8 @@ class Solution_2(object):
         :rtype: List[int]
         @logic: 暴力
         """
-        intersection = []
         
-        for i in nums1:
-            if i in nums2 and i not in intersection:
-                intersection.append(i)
+        intersection = [i for i in list(set(nums1)) if i in list(set(nums2))]
                 
         return intersection
 
